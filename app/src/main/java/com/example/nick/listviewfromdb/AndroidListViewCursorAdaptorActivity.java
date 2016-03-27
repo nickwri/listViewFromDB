@@ -1,8 +1,12 @@
 package com.example.nick.listviewfromdb;
 
 import android.app.Activity;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,13 +18,16 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.example.nick.listviewfromdb.adapters.CustomSimpleCursorAdapter;
 import com.example.nick.listviewfromdb.db.CountriesDbAdapter;
 
 
-public class AndroidListViewCursorAdaptorActivity extends Activity {
+public class AndroidListViewCursorAdaptorActivity extends Activity{
 
     private CountriesDbAdapter dbHelper;
     private SimpleCursorAdapter dataAdapter;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,7 @@ public class AndroidListViewCursorAdaptorActivity extends Activity {
 
         // create the adapter using the cursor pointing to the desired data
         //as well as the layout information
-        dataAdapter = new SimpleCursorAdapter(
+        dataAdapter = new CustomSimpleCursorAdapter(
                 this, R.layout.country_info,
                 cursor,
                 columns,
@@ -113,5 +120,9 @@ public class AndroidListViewCursorAdaptorActivity extends Activity {
             }
         });
 
+
+
     }
+
+
 }
